@@ -1,0 +1,9 @@
+.productList {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+/* .productsContainer{
+    display: flex;
+    justify-content: center;
+} */

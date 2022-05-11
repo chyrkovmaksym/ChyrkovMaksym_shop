@@ -1,0 +1,121 @@
+.miniCartBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.miniCartBtn {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.numOfItems{
+  position: absolute;
+  background-color: black;
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 20px;
+  right: 30px;
+}
+.bg {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: gray;
+  left: 0;
+  top: 80px;
+  opacity: 0.3;
+}
+.miniCart {
+  background-color: white;
+  position: absolute;
+  z-index: 1;
+  top: 63px;
+  right: 1%;
+  max-height: 800px;
+  overflow-y: auto;
+}
+.miniCartCaption {
+  margin: 32px 16px 10px;
+}
+
+.miniCartProductDescription {
+  display: flex;
+  flex-direction: column;
+  width: 164px;
+}
+.miniCartProductDescription p {
+  margin: 0;
+}
+.miniCartProductNumber {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.changeNumber {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #1d1f22;
+  background-color: white;
+}
+.totalPriceDiv {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 16px;
+}
+.totalPriceDiv p {
+  font-weight: bold;
+}
+.miniCartButtons {
+  display: flex;
+  margin: auto 16px 20px;
+  justify-content: space-around;
+}
+.miniCartButtons button {
+  width: 140px;
+  height: 43px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 120%;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.viewBagBtn {
+  background-color: white;
+  border: 1px solid #1d1f22;
+}
+.viewBagBtn:hover {
+  background-color: #dddddd;
+}
+.checkOutBtn {
+  color: white;
+  background-color: #5ece7b;
+  border: none;
+}
+.checkOutBtn:hover {
+  background-color: #3b804d;
+}
+.checkOutBtn:active {
+  background-color: #2d633b;
+}
+@media screen and (max-width: 600px) {
+  .bg {
+    top: 126px;
+  }
+  .miniCart {
+    top: 126px;
+  }
+}

@@ -1,0 +1,33 @@
+.attributeName {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+.textAttribute {
+  border: 1px solid #1d1f22;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  cursor: pointer;
+  text-align: center;
+}
+.swatchAttributeBorder {
+  margin-right: 10px;
+  padding: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.pickedTextAttribute {
+  background-color: black;
+  color: white;
+}
+.pickedSwatchAttribute {
+  border: 1px solid green;
+}

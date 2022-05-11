@@ -1,0 +1,24 @@
+.productCard {
+  height: 444px;
+  width: 386px;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 16px;
+  margin: 40px;
+}
+.productImageBox {
+  height: 330px;
+  overflow: hidden;
+}
+.productImage {
+  width: 100%;
+}
+.productCard:hover {
+  box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+  cursor: pointer;
+}
+.link{
+  color: black;
+  text-decoration: none;
+}

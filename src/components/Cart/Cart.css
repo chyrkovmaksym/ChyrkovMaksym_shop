@@ -1,0 +1,40 @@
+.cartProductNumber {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.changeNumber {
+  width: 32px;
+  height: 32px;
+}
+hr {
+  opacity: 0.2;
+}
+.orderBtn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 32px;
+  width: 279px;
+  height: 43px;
+  background: #5ece7b;
+  border: none;
+  color: white;
+  text-transform: uppercase;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 120%;
+  margin: 20px 0 40px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.orderBtn:hover {
+  background-color: #3b804d;
+}
+.orderBtn:active {
+    background-color: #2d633b;
+}
