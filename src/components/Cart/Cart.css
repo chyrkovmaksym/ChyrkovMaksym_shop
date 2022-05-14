@@ -38,3 +38,11 @@ hr {
 .orderBtn:active {
     background-color: #2d633b;
 }
+.emptyCart {
+  margin-top: 20vh;
+  text-align: center;
+}
+.numAndImage{
+  display: flex;
+  align-items: center;
+}

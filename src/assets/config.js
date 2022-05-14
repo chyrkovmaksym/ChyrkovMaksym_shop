@@ -25,3 +25,20 @@ export const combineSame = (cartProducts) => {
   }
   return { allProducts, productsNumber };
 };
+export const cartProductObject = (product) => ({
+  brand: product.brand,
+  name: product.name,
+  attributes: product.attributes,
+  description: product.description,
+  gallery: product.gallery,
+  currentPhotoUrl: product.gallery[0],
+  inStock: product.inStock,
+  prices: product.prices,
+  pickedValues: product.attributes.map((attribute) => {
+    return {
+      name: attribute.name,
+      value: attribute.items[0].displayValue,
+    };
+  }),
+  isPending: false,
+});

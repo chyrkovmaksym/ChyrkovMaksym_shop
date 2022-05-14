@@ -5,7 +5,6 @@ import {
   REQUEST_CURRENT_PRODUCTS_SUCCESS,
   CURRENCY_CANGE,
   CART_ADD,
-  CART_CHANGE,
   CART_REMOVE_PRODUCT,
 } from '../assets/constants';
 import { INITIAL_DATA, CATEGORY } from '../GraphQL/Queries';
@@ -48,11 +47,6 @@ export const currencyChange = (index) => ({
 export const cartAdd = (product) => ({
   type: CART_ADD,
   payload: product,
-});
-
-export const cartChange = (product, attribute, item) => ({
-  type: CART_CHANGE,
-  payload: { product, attribute, item },
 });
 
 export const cartRemoveProduct = (product) => ({

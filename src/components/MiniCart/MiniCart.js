@@ -2,7 +2,7 @@ import './MiniCart.css';
 import React from 'react';
 import CartIcon from '../../assets/images/EmptyCart.png';
 import { connect } from 'react-redux';
-import { cartAdd, cartChange, cartRemoveProduct } from '../../Redux/actions';
+import { cartAdd, cartRemoveProduct } from '../../Redux/actions';
 import Attributes from '../Attributes/Attributes';
 import ProductDescription from '../ProductDescription/ProductDescription';
 import CartProduct from '../CartProduct/CartProduct';
@@ -18,8 +18,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onCartAdd: (product) => dispatch(cartAdd(product)),
-  onCartChange: (product, attribute, item) =>
-    dispatch(cartChange(product, attribute, item)),
   onCartRemoveProduct: (product) => dispatch(cartRemoveProduct(product)),
 });
 class MiniCart extends React.Component {
@@ -88,30 +86,14 @@ class MiniCart extends React.Component {
                       <Attributes
                         attributes={product.attributes}
                         pickedValues={product.pickedValues}
-                        changePickedValue={this.props.onCartChange.bind(
-                          null,
-                          product
-                        )}
-                        swatchAttributeSize={swatchAttributeSize}
-                        textAttributeSize={textAttributeSize}
-                        attributeNameStyle={attributeNameStyle}
+                        miniCart={true}
                       />
                     </div>
                     <div className='miniCartProductNumber'>
                       <button
                         className='changeNumber'
                         onClick={() => {
-                          this.props.onCartAdd({
-                            ...product,
-                            pickedValues: product.attributes.map(
-                              (attribute) => {
-                                return {
-                                  name: attribute.name,
-                                  value: attribute.items[0].displayValue,
-                                };
-                              }
-                            ),
-                          });
+                          this.props.onCartAdd(product);
                         }}
                       >
                         +
@@ -156,24 +138,6 @@ class MiniCart extends React.Component {
     );
   }
 }
-const textAttributeSize = {
-  width: '32px',
-  height: '32px',
-  fontWeight: '400',
-  fontSize: '10px',
-};
 
-const swatchAttributeSize = {
-  width: '16px',
-  height: '16px',
-};
-const attributeNameStyle = {
-  fontFamily: 'Raleway',
-  fontStyle: 'normal',
-  fontWeight: '400',
-  fontSize: '14px',
-  lineHeight: '16px',
-  textTransform: 'capitalize',
-  margin: '5px 0px',
-};
+
 export default connect(mapStateToProps, mapDispatchToProps)(MiniCart);

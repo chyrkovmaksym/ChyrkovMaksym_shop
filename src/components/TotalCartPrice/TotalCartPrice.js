@@ -12,13 +12,13 @@ class TotalCartPrice extends React.Component {
   render() {
     const { currencies, currentCurrency, cartProducts } = this.props;
     return (
-      <div style={{ display: 'flex', marginTop: '20px' }}>
-        <div className='financeKeys'>
+      <div className='totalPrice'>
+        <div className='financeProps'>
           <p>Tax 21%:</p>
           <p>Quantity:</p>
           <p>Total:</p>
         </div>
-        <div style={{ marginLeft: '20px' }} className='financeValues'>
+        <div className='financeValues'>
           <p>
             {currencies[currentCurrency].symbol}
             {Math.round(this.props.totalPrice * 21) / 100}

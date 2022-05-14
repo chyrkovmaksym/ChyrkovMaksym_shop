@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import ProductDescription from '../ProductDescription/ProductDescription';
 import CartProduct from '../CartProduct/CartProduct';
 import Attributes from '../Attributes/Attributes';
-import { cartAdd, cartChange, cartRemoveProduct } from '../../Redux/actions';
+import { cartAdd, cartRemoveProduct } from '../../Redux/actions';
 import ProductImage from '../ProductImage/ProductImage';
 import { combineSame } from '../../assets/config';
 import TotalCartPrice from '../TotalCartPrice/TotalCartPrice';
@@ -19,8 +19,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onCartClean: () => dispatch(cartAdd()),
   onCartAdd: (product) => dispatch(cartAdd(product)),
-  onCartChange: (product, attribute, item) =>
-    dispatch(cartChange(product, attribute, item)),
   onCartRemoveProduct: (product) => dispatch(cartRemoveProduct(product)),
 });
 
@@ -41,35 +39,21 @@ class Cart extends React.Component {
               <CartProduct>
                 <div>
                   <ProductDescription
-                    productDescriptionStyle={productDescriptionStyle}
+                    isMainCart={true}
                     product={product}
-                    productPriceStyle={productPriceStyle}
                   />
                   <Attributes
                     attributes={product.attributes}
                     pickedValues={product.pickedValues}
-                    changePickedValue={this.props.onCartChange.bind(
-                      null,
-                      product
-                    )}
-                    swatchAttributeSize={swatchAttributeSize}
-                    textAttributeSize={textAttributeSize}
+                    miniCart={false}
                   />
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
+                <div className='numAndImage'>
                   <div className='cartProductNumber'>
                     <button
                       className='changeNumber'
                       onClick={() => {
-                        this.props.onCartAdd({
-                          ...product,
-                          pickedValues: product.attributes.map((attribute) => {
-                            return {
-                              name: attribute.name,
-                              value: attribute.items[0].displayValue,
-                            };
-                          }),
-                        });
+                        this.props.onCartAdd(product);
                       }}
                     >
                       +
@@ -79,7 +63,6 @@ class Cart extends React.Component {
                       className='changeNumber'
                       onClick={() => {
                         this.props.onCartRemoveProduct(product);
-                        console.log(product);
                       }}
                     >
                       -
@@ -103,37 +86,11 @@ class Cart extends React.Component {
       </div>
     ) : (
       <div>
-        <h1 style={{ textAlign: 'center', marginTop: '20vh' }}>
+        <h1 className='emptyCart'>
           Cart Is Empty...
         </h1>
       </div>
     );
   }
 }
-const textAttributeSize = {
-  width: '63px',
-  height: '45px',
-};
-
-const swatchAttributeSize = {
-  width: '32px',
-  height: '32px',
-};
-
-const productDescriptionStyle = {
-  marginTop: '0',
-  fontFamily: 'Raleway',
-  fontStyle: 'normal',
-  fontWeight: '600',
-  fontSize: '30px',
-  lineHeight: '27px',
-};
-
-const productPriceStyle = {
-  fontFamily: 'Raleway',
-  fontStyle: 'normal',
-  fontWeight: '700',
-  fontSize: '24px',
-  lineHeight: '24px',
-};
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

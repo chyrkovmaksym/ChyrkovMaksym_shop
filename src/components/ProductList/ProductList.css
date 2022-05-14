@@ -1,9 +1,5 @@
 .productList {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 0.5fr));
+    grid-template-rows: 1fr;
 }
-/* .productsContainer{
-    display: flex;
-    justify-content: center;
-} */

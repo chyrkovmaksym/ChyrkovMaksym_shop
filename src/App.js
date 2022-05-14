@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import PLP from './components/PLP/PLP';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import PDP from './components/PDP/PDP';
 import { connect } from 'react-redux';
 import { requestInitialData, requestCurrentProduct } from './Redux/actions';
@@ -22,23 +22,33 @@ const mapDispatchToProps = (dispatch) => ({
 
 class App extends React.Component {
   componentDidMount() {
-    (async() => {
+    (async () => {
       await this.props.onInitialDataRequest(client);
-      await this.props.onCurrentProductsRequest(client, this.props.categories[0].name)
-    }
-    )();
+      await this.props.onCurrentProductsRequest(
+        client,
+        this.props.categories[0].name
+      );
+    })();
   }
 
   render() {
-    const { isPending } = this.props;
+    const { isPending, categories } = this.props;
     return (
       <BrowserRouter>
         <div className='app'>
           <div className='page'>
             {!isPending && <Navbar />}
             <Routes>
-              <Route path='/' element={<PLP />} />
-              <Route path='/cart' element={<Cart/>} />
+              <Route
+                path='/'
+                element={
+                  <Navigate
+                    to={`/${categories.length ? categories[0].name : ''}`}
+                  />
+                }
+              />
+              <Route path='/:category' element={<PLP />} />
+              <Route path='/cart' element={<Cart />} />
               <Route path='/pdp/:id' element={<PDP />} />
             </Routes>
           </div>

@@ -14,7 +14,6 @@ import {
   currencyChange,
   cartChange,
 } from './Redux/reducers';
-
 const rootReducer = combineReducers({
   requestInitialData,
   requestCurrentProduct,

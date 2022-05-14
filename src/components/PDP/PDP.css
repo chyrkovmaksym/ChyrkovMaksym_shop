@@ -5,10 +5,10 @@
   margin-top: 80px;
 }
 .gallery {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
   cursor: pointer;
+  height: 700px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .productsImageContainer {
   width: 80px;
@@ -28,7 +28,6 @@
 .description {
   display: flex;
   flex-direction: column;
-  justify-content: start;
   width: 30%;
 }
 .brand {

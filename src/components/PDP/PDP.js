@@ -2,7 +2,7 @@ import './PDP.css';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { PRODUCT } from '../../GraphQL/Queries';
-import { client } from '../../assets/config';
+import { client, cartProductObject } from '../../assets/config';
 
 import { connect } from 'react-redux';
 import { cartAdd } from '../../Redux/actions';
@@ -31,16 +31,6 @@ const getProduct = async (id) => {
   return product.data;
 };
 
-const textAttributeSize = {
-  width: '63px',
-  height: '45px',
-};
-
-const swatchAttributeSize = {
-  width: '32px',
-  height: '32px',
-};
-
 class PDP extends React.Component {
   constructor() {
     super();
@@ -59,23 +49,7 @@ class PDP extends React.Component {
   componentDidMount() {
     const { id } = this.props.params;
     getProduct(id).then(({ product }) => {
-      this.setState({
-        brand: product.brand,
-        name: product.name,
-        attributes: product.attributes,
-        description: product.description,
-        gallery: product.gallery,
-        currentPhotoUrl: product.gallery[0],
-        inStock: product.inStock,
-        prices: product.prices,
-        pickedValues: product.attributes.map((attribute) => {
-          return {
-            name: attribute.name,
-            value: attribute.items[0].displayValue,
-          };
-        }),
-        isPending: false,
-      });
+      this.setState(cartProductObject(product));
     });
   }
   changePickedValue = (attribute, item) => {
@@ -125,8 +99,7 @@ class PDP extends React.Component {
               attributes={this.state.attributes}
               pickedValues={this.state.pickedValues}
               changePickedValue={this.changePickedValue}
-              swatchAttributeSize={swatchAttributeSize}
-              textAttributeSize={textAttributeSize}
+              miniCart={false}
             />
             <p className='price'>PRICE:</p>
             <p className='amount'>
@@ -137,17 +110,16 @@ class PDP extends React.Component {
             </p>
             <button
               disabled={!this.state.inStock}
-              className={`addToCartBtn ${this.state.inStock ? '': 'disabled'}`}
+              className={`addToCartBtn ${this.state.inStock ? '' : 'disabled'}`}
               onClick={() => {
                 this.props.onCartAdd(this.state);
               }}
             >
               <p>{this.state.inStock ? 'add to cart' : 'out of stock'}</p>
             </button>
-            <div
-              className='productDescription'
-              dangerouslySetInnerHTML={{ __html: this.state.description }}
-            ></div>
+            <div className='productDescription'>
+              {require('html-react-parser')(this.state.description)}
+            </div>
           </div>
         </div>
       )
